@@ -21,6 +21,11 @@ func (b BigInt) Int64() int64 {
 	return int64(b)
 }
 
+// Float64 returns the float64 representation of b
+func (b BigInt) Float64() float64 {
+	return float64(b.Int64())
+}
+
 // MarshalGQL implements the graphql.Marshaler interface found in
 // gqlgen, allowing the type to be marshaled by gqlgen and sent over
 // the wire.

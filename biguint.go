@@ -21,6 +21,11 @@ func (b BigUInt) UInt64() uint64 {
 	return uint64(b)
 }
 
+// Float64 returns the float64 representation of b
+func (b BigUInt) Float64() float64 {
+	return float64(b.UInt64())
+}
+
 // MarshalGQL implements the graphql.Marshaler interface found in
 // gqlgen, allowing the type to be marshaled by gqlgen and sent over
 // the wire.
