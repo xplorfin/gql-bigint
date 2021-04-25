@@ -1,5 +1,6 @@
 # gql-bigint
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/xplorfin/gql-bigint.svg)](https://pkg.go.dev/github.com/xplorfin/gql-bigint)
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://app.renovatebot.com/dashboard#github/xplorfin/gql-bigint)
 [![Tests](https://github.com/xplorfin/gql-bigint/actions/workflows/test.yml/badge.svg)](https://github.com/xplorfin/gql-bigint/actions/workflows/test.yml)
 [![Linter](https://github.com/xplorfin/gql-bigint/actions/workflows/lint.yml/badge.svg)](https://github.com/xplorfin/gql-bigint/actions/workflows/lint.yml)
