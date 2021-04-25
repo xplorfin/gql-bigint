@@ -14,7 +14,39 @@ if needed.
 
 ## Usage
 
-Install `gql-bigint` using `go get -u github.com/xplorfin/gql-bigint`
+Install `gql-bigint` using `go get -u github.com/xplorfin/gql-bigint`.
+
+Make sure the `autobind` entry in your `.gqlgen.yml` file has `"github.com/xplorfin/gql-bigint"` somewhere in it,
+like so:
+
+```yaml
+autobind:
+  - "github.com/xplorfin/gql-bigint"
+  [... all your other autobinds ...]
+```
+
+Next, make sure the `models` entry in your `.gqlgen.yml` is set up to map the scalar types properly when generating:
+
+```yaml
+models:
+  [... whatever else you have here ...]
+  BigInt:
+      model:
+        - github.com/xplorfin/gql-bigint.BigInt
+  BigUInt:
+      model:
+        - github.com/xplorfin/gql-bigint.BigUInt
+```
+
+Finally, put the following two lines into a `.graphql` file where gqlgen will be able to pick it up (I recommand `scalars.graphql`):
+
+```graphql
+scalar BigInt
+
+scalar BigUInt
+```
+
+Run `go generate ./...` to regenerate your schema/resolvers, and you're done. 
 
 ## Contributing
 
