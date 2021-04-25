@@ -1,8 +1,8 @@
 # gql-bigint
 
 [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://app.renovatebot.com/dashboard#github/xplorfin/gql-bigint)
-[![Test status](https://github.com/xplorfin/gql-bigint/workflows/Tests/badge.svg)](https://github.com/xplorfin/gql-bigint/actions?query=workflow%3ATests)
-[![Lint status](https://github.com/xplorfin/gql-bigint/workflows/Lint/badge.svg)](https://github.com/xplorfin/gql-bigint/actions?query=workflow%3ALint)
+[![Tests](https://github.com/xplorfin/gql-bigint/actions/workflows/test.yml/badge.svg)](https://github.com/xplorfin/gql-bigint/actions/workflows/test.yml)
+[![Linter](https://github.com/xplorfin/gql-bigint/actions/workflows/lint.yml/badge.svg)](https://github.com/xplorfin/gql-bigint/actions/workflows/lint.yml)
 
 gql-bigint contains two scalar types (`BigInt` and `BigUInt`) for use with [gqlgen](https://github.com/99designs/gqlgen) GraphQL servers.
 
