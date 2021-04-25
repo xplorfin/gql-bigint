@@ -11,14 +11,27 @@ import (
 // which is usable as a GraphQL scalar type.
 type BigInt int64
 
+// Ptr returns a pointer to b.
 func (b BigInt) Ptr() *BigInt {
 	return &b
 }
 
+// Int64 returns the underlying inbuilt int64 value of b.
 func (b BigInt) Int64() int64 {
 	return int64(b)
 }
 
+// MarshalGQL implements the graphql.Marshaler interface found in
+// gqlgen, allowing the type to be marshaled by gqlgen and sent over
+// the wire.
+func (b BigInt) MarshalGQL(w io.Writer) {
+	if err := json.NewEncoder(w).Encode(b.Int64()); err != nil {
+		panic(errors.Wrapf(err, "error marshaling BigInt %[1]v", b))
+	}
+}
+
+// UnmarshalGQL implements the graphql.Unmarshaler interface found in
+// gqlgen, allowing the type to be received by a graphql client and unmarshaled.
 func (b *BigInt) UnmarshalGQL(v interface{}) error {
 	check, ok := v.(json.Number)
 	if !ok {
@@ -33,10 +46,4 @@ func (b *BigInt) UnmarshalGQL(v interface{}) error {
 	*b = BigInt(conv)
 
 	return nil
-}
-
-func (b BigInt) MarshalGQL(w io.Writer) {
-	if err := json.NewEncoder(w).Encode(b.Int64()); err != nil {
-		panic(errors.Wrapf(err, "error marshaling BigInt %[1]v", b))
-	}
 }
