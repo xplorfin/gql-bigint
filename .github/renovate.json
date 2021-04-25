@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "assignees": [
+    "jalavosus"
+  ],
+  "enabledManagers": ["gomod"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchManagers": ["gomod"],
+      "automerge": true,
+      "postUpdateOptions": [
+        "gomodTidy"
+      ]
+    }
+  ],
+  "rebaseWhen": "behind-base-branch",
+  "branchConcurrentLimit": 3,
+  "prConcurrentLimit": 5,
+  "commitBody": "[ci nobuild]"
+}

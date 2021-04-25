@@ -1,0 +1,75 @@
+# see: https://golangci-lint.run/usage/configuration/ for config info
+run:
+  # default concurrency is a available CPU number
+  concurrency: 8
+  # include test files or not, default is true
+  tests: true
+  # timeout for analysis; set high due to the default
+  # 1m timeout sometimes causing failures in CI
+  timeout: 10m
+
+  skip-dirs-use-default: true
+
+output:
+  sort-results: true
+
+linters:
+  disable-all: true
+  enable:
+    - gofmt
+    - govet
+    - gosimple
+    - unconvert
+    - goimports
+    - ineffassign
+    - structcheck
+    - bodyclose
+    - whitespace
+    - nolintlint
+  fast: false
+
+linters-settings:
+  gofmt:
+    # simplify code: gofmt with `-s` option, true by default
+    simplify: true
+
+  govet:
+    check-shadowing: true
+    enable:
+      - assign
+      - errorsas
+      - tests
+      - unreachable
+
+  whitespace:
+    multi-if: true
+    multi-func: true
+
+  nolintlint:
+    allow-leading-space: false
+    allow-unused: false
+    require-explanation: true # this should _probably_ be true, but like... we're all lazy sometimes
+    require-specific: true
+
+issues:
+  fix: true
+  exclude-rules:
+    # Exclude some linters from running on tests files.
+    - path: _test\.go
+      linters:
+        - gosimple
+        - gofmt
+        - goimports
+        - govet
+
+    - path: graph/generated/generated\.go
+      linters:
+        - nolintlint
+
+    - path: graph/generated/models_gen\.go
+      linters:
+        - nolintlint
+
+    - path: graph/\.resolvers\.go
+      linters:
+        - nolintlint

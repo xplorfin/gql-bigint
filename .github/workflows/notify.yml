@@ -1,0 +1,41 @@
+# notifies the entropy_rocks_commits channel of events
+name: "Irc Notification"
+
+on: [push, pull_request, create]
+
+env:
+  commits-channel: "#entropy_rocks_commits"
+  notifier-nick: entropy-github-notifier
+
+jobs:
+  notify:
+    if: github.actor != 'renovate[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Push
+        uses: rectalogic/notify-irc@v1
+        if: github.event_name == 'push'
+        with:
+          channel: ${{ env.commits-channel }}
+          nickname: ${{ env.notifier-nick }}
+          message: |
+            ${{ github.actor }} pushed ${{ github.event.ref }} ${{ github.event.compare }}
+            ${{ join(github.event.commits.*.message) }}
+
+      - name: Notify PR
+        uses: rectalogic/notify-irc@v1
+        if: github.event_name == 'pull_request'
+        with:
+          channel: ${{ env.commits-channel }}
+          nickname: ${{ env.notifier-nick }}
+          message: |
+            ${{ github.actor }} opened PR ${{ github.event.pull_request.html_url }}
+
+      - name: Notify Tag Created
+        uses: rectalogic/notify-irc@v1
+        if: github.event_name == 'create' && github.event.ref_type == 'tag'
+        with:
+          channel: ${{ env.commits-channel }}
+          nickname: ${{ env.notifier-nick }}
+          message: |
+            ${{ github.actor }} tagged ${{ github.repository }} ${{ github.event.ref }}

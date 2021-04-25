@@ -1,0 +1,26 @@
+project_name: gql-bigint
+
+builds:
+  skip: true
+
+checksum:
+  name_template: checksums.txt
+
+snapshot:
+  name_template: '{{ .Tag }}-next'
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+
+release:
+  github:
+    owner: xplorfin
+    name: gql-bigint
+
+# add a source archive at release time
+source:
+  enabled: true

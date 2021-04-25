@@ -1,0 +1,47 @@
+# Where are all the schema files located? globs are supported eg  src/**/*.graphqls
+schema:
+  - schema/*.graphql
+
+# Where should the generated server code go?
+exec:
+  filename: generated/generated.go
+  package: generated
+
+# Where should any generated models go?
+model:
+  filename: model/models_gen.go
+  package: model
+
+# Where should the resolver implementations go?
+resolver:
+  layout: follow-schema
+  dir: ./
+  package: gql_test
+
+autobind:
+  - "github.com/xplorfin/gql-bigint/gql-test/model"
+  - "github.com/xplorfin/gql-bigint"
+
+# This section declares type mapping between the GraphQL and go type systems
+#
+# The first line in each type will be used as defaults for resolver arguments and
+# modelgen, the others will be allowed when binding to fields. Configure them to
+# your liking
+models:
+  ID:
+    model:
+      - github.com/99designs/gqlgen/graphql.ID
+      - github.com/99designs/gqlgen/graphql.Int
+      - github.com/99designs/gqlgen/graphql.Int64
+      - github.com/99designs/gqlgen/graphql.Int32
+  Int:
+    model:
+      - github.com/99designs/gqlgen/graphql.Int
+      - github.com/99designs/gqlgen/graphql.Int64
+      - github.com/99designs/gqlgen/graphql.Int32
+  BigInt:
+      model:
+        - github.com/xplorfin/gql-bigint.BigInt
+  BigUInt:
+      model:
+        - github.com/xplorfin/gql-bigint.BigUInt

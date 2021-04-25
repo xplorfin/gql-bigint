@@ -1,0 +1,4 @@
+type Query {
+    bigIntQuery:  BigIntObject
+    bigUIntQuery: BigUIntObject
+}

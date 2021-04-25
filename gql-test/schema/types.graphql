@@ -1,0 +1,7 @@
+type BigIntObject {
+    value: BigInt!
+}
+
+type BigUIntObject {
+    value: BigUInt!
+}
