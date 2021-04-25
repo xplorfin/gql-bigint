@@ -13,6 +13,9 @@
       "automerge": true,
       "postUpdateOptions": [
         "gomodTidy"
+      ],
+      "excludePackagePrefixes": [
+        "github.com/xplorfin/gql-bigint"
       ]
     }
   ],
